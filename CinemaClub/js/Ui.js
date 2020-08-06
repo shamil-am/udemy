@@ -1,14 +1,19 @@
 class UI {
   static addToTable(newFilm) {
-    document.querySelector(".tableBody").innerHTML += `
-    <tr>
+    let tr = document.createElement("TR");
+    tr.innerHTML = `
         <td>${newFilm.name}</td>
         <td>${newFilm.director}</td>
         <td>${newFilm.language}</td>
         <td>${newFilm.times}</td>
         <td><a href="#" class="btn btn-danger">X</a></td>
-    </tr>
         `;
+    let firstChild = document.querySelector(".tableBody").firstElementChild;
+    if (firstChild == null) {
+      document.querySelector(".tableBody").appendChild(tr);
+    } else {
+      document.querySelector(".tableBody").insertBefore(tr, firstChild);
+    }
     times = [];
   }
 
@@ -22,14 +27,17 @@ class UI {
     }, 1000);
   }
 
-  static resetFormFields(){
+  static resetFormFields() {
     filmName.value = "";
     director.value = "";
-    language.value = "yyyy";
+    language.value = ""; //
     let allCheckbox = document.querySelectorAll(
       ".timeselect input[type='checkbox']"
     );
     allCheckbox.forEach((btn) => (btn.checked = false));
   }
 
+  static removeFilmFromTable(btn){
+    btn.parentElement.parentElement.remove();
+  }
 }

@@ -7,10 +7,9 @@ trigger();
 
 function trigger() {
   document.addEventListener("DOMContentLoaded", () => {
-      let allFilms = JSON.parse(localStorage.getItem("Films"));
-      if (allFilms == null) 
-          return;
-      allFilms.forEach(film => UI.addToTable(film));
+    let allFilms = JSON.parse(localStorage.getItem("Films"));
+    if (allFilms == null) return;
+    allFilms.forEach((film) => UI.addToTable(film));
   });
 
   document.querySelector("#filmForm").addEventListener("submit", (e) => {
@@ -40,5 +39,15 @@ function trigger() {
 
       UI.createAlert(`${newFilm.name} əlavə edildi`, "success");
     } //else end
+  });
+
+  document.querySelector(".tableBody").addEventListener("click", (e) => {
+    if (e.target.className == "btn btn-danger") {
+      if (confirm("Silmək istədiyinizə əminsinizmi?")) {
+        UI.removeFilmFromTable(e.target);
+        Storage.removeFilmFromStorage(e.target);
+        UI.createAlert(`${e.target.parentElement.parentElement.firstElementChild.textContent} - silindi` ,"dark");
+      }
+    }
   });
 }
