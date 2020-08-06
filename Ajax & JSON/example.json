@@ -1,0 +1,17 @@
+[
+  {
+   "name": "Shamil",
+   "department": "Information",
+   "salary": "2000"
+  },
+  {
+   "name": "Emil",
+   "department": "Studio",     
+   "salary": "3000"
+  },
+  {
+   "name": "Aga",
+   "department": "Foto",
+   "salary": "2500"
+  }
+]
