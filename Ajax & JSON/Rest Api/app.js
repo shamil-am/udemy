@@ -8,7 +8,7 @@ function convertMoney(params) {
       let amount = responseArr.rates.TRY;
       let input = Number(document.querySelector("#amount").value);
       let output = document.querySelector("#tl");
-      output.value = input * amount;
+      output.value = (input * amount).toFixed(2);
     }
   };
 
